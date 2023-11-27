@@ -1,0 +1,39 @@
+﻿<Window x:Class="DZ_WPF_27_11_TreeView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DZ_WPF_27_11_TreeView"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="400">
+    <Grid Background="Aquamarine">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="39*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="44*"></RowDefinition>
+            <RowDefinition Height="488*"></RowDefinition>
+            <RowDefinition Height="13*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0" Content="Add Task" Margin="5,15,0,40" Click="AddTask_Click" Grid.RowSpan="3"/>
+        <Button Grid.Column="0" Content="Update Task" Margin="5,45,0,10" Click="UpdateTask_Click" Grid.RowSpan="3"/>
+        <TextBox Grid.Column="1" x:Name="inputTextBox" Margin="5,39,5,17" Background="Ivory" Grid.RowSpan="3"/>
+        <Button Grid.Column="2" Content="Remove Task" Margin="0,39,5,17" Click="RemoveTask_Click" Grid.RowSpan="3"/>
+
+        <TreeView Grid.Row="3" Name="treeView" Background="AntiqueWhite" ItemsSource="{Binding Tasks}" Margin="5,94,5,12" Grid.RowSpan="2" Grid.ColumnSpan="3">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding SubTasks}">
+                    <TextBlock Text="{Binding TaskName}"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+    </Grid>
+</Window>
